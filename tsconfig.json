@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+        // "allowJs": true,
+        // "rootDir": "./",
+        "baseUrl": ".",
+        "target": "ES2021",
+        "sourceMap": true,
+        "module": "ES6",
+        "outDir": "./dist",
+        "esModuleInterop": true,
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "paths": {
+            "@domain/*": ["src/domain/*"],
+            "@infra/*": ["src/infra/*"],
+            "@controller/*": ["src/controller/*"],
+            "@/*": ["src/*"]
+        },
+        "forceConsistentCasingInFileNames": true,
+        "strict": false,
+        "pretty": true
+    },
+
+    // "include": [
+    //     "src/**/*"
+    // ],
+    "exclude": [
+        "node_modules", "dist"
+    ]
+}
