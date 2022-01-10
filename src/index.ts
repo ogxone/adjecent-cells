@@ -4,6 +4,7 @@
  * Module dependencies.
  */
 
+ import 'reflect-metadata' 
  import { app } from "@/app";
  import debug from "debug";
  debug("adjecent-boxes:server");
@@ -26,6 +27,7 @@
   */
  
  server.listen(port);
+ console.log('Started listenting ...')
  server.on("error", onError);
  server.on("listening", onListening);
  

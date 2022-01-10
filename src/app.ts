@@ -1,6 +1,6 @@
 import createError from 'http-errors'
 import express from 'express'
-import path from 'path'
+import path, { resolve } from 'path'
 // var cookieParser = require('cookie-parser');
 import morgan from 'morgan'
 
@@ -22,16 +22,16 @@ useExpressServer(app, {
   defaultErrorHandler: false
 });
 
-
+let projectRoot = resolve('../')
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(projectRoot, 'views'));
 app.set('view engine', 'jade');
 
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(projectRoot, 'public')));
 
 // app.use('/', indexRouter);
 // app.use('/api', apisRouter);

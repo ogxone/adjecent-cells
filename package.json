@@ -8,7 +8,8 @@
     "build": "run-s build:*",
     "build:tcs": "rimraf dist && npx tsc && npx tsc-alias",
     "build:assets": "",
-    "start": "NODE_ENV=production npm run build && node ./dist/index.js"
+    "start": "NODE_ENV=production npm run build && node --es-module-specifier-resolution=node ./dist",
+    "debug": "NODE_ENV=production npm run build && node --es-module-specifier-resolution=node --inspect dist"
   },
   "main": "dist/index.js",
   "dependencies": {
