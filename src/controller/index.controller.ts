@@ -1,11 +1,12 @@
-import { Controller, Render } from "routing-controllers";
+import { Controller, Get, Render } from "routing-controllers";
 
-@Controller("/")
-@Render("index")
+@Controller()
 class IndexController {
+  @Get('/')
+  @Render("index")
   home() {
-    return { title: "Express" };
+    return { title: "Express11" };
   }
 }
 
-export {IndexController}
+export { IndexController }

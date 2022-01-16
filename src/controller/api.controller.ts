@@ -25,4 +25,4 @@ class ApiController {
     }
 }
 
-export {ApiController}
+export { ApiController }
