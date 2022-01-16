@@ -7,7 +7,8 @@
   "scripts": {
     "build": "run-s build:*",
     "build:tcs": "rimraf dist && npx tsc && npx tsc-alias",
-    "start": "NODE_ENV=production npm run build && node --es-module-specifier-resolution=node ./dist"
+    "start": "NODE_ENV=production npm run build && node --es-module-specifier-resolution=node ./dist",
+    "test": "npx ts-mocha"
   },
   "main": "dist/index.js",
   "dependencies": {
@@ -28,7 +29,12 @@
     "tsc-alias": "^1.5.0"
   },
   "devDependencies": {
+    "@types/mocha": "^9.0.0",
+    "esm": "^3.2.25",
     "nodemon": "^2.0.15",
-    "tsconfig-paths": "^3.12.0"
+    "ts-mocha": "^9.0.2",
+    "ts-node": "^10.4.0",
+    "tsconfig-paths": "^3.12.0",
+    "typescript": "^4.5.4"
   }
 }
