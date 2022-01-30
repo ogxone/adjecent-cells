@@ -6,6 +6,6 @@ interface ISolver {
 
 export class DefaultSolver implements ISolver {
     solve(board: Board): BoardMask {
-        throw new Error('Method not implemented.');
+        return new BoardMask([])
     }
 }
