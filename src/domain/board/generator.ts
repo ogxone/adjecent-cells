@@ -11,8 +11,8 @@ export class RandomBoardGenerator implements IBoardGenerator {
     }
 }
 
-export class PredefinedBoardGenerator implements IBoardGenerator {
-    generate(size: Size): Board {
-        throw new Error("Method not implemented.");
-    }    
-}
+// export class PredefinedBoardGenerator implements IBoardGenerator {
+//     generate(size: Size): Board {
+//         throw new Error("Method not implemented.");
+//     }    
+// }
