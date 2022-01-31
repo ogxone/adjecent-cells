@@ -1,10 +1,9 @@
-import { Board, BoardMask, Color } from "@domain/board/components";
-import { DefaultSolver } from "@domain/board/solver";
+import { Board, Cell, Color, createPosition } from "@domain/board/components";
+import { AdjecentCells, DefaultSolver } from "@domain/board/solver";
 import { equal } from "assert";
 
 describe("Test default solver", () => {
-  let boards: Array<[string, Board, BoardMask]> = [
-    // let boards = [
+  let boards: Array<[string, Board, AdjecentCells]> = [
     [
       "board1",
       new Board([
@@ -13,24 +12,24 @@ describe("Test default solver", () => {
         [Color.blue, Color.brown, Color.cyan],
         [Color.blue, Color.grey, Color.grey],
       ]),
-      new BoardMask([
-        [true, false, false],
-        [true, false, false],
-        [true, false, false],
-        [true, false, false],
+      new AdjecentCells([
+        new Cell(createPosition(0, 0), Color.blue),
+        new Cell(createPosition(0, 1), Color.blue),
+        new Cell(createPosition(0, 2), Color.blue),
+        new Cell(createPosition(0, 3), Color.blue),
       ]),
     ],
   ];
 
   // boards.forEach((data: [ string,  Board, BoardMask ], idx) => {
-  boards.forEach((data: [string, Board, BoardMask], idx) => {
-    let [title, board, expectedMask] = data;
+  boards.forEach((data: [string, Board, AdjecentCells], idx) => {
+    let [title, board, expectedAdjecentCells] = data;
     it(title, () => {
       let solver = new DefaultSolver();
 
-      let actualMask = solver.solve(board);
+      let actualAdjecentCells = solver.solve(board);
 
-      equal(expectedMask, actualMask);
+      equal(expectedAdjecentCells, actualAdjecentCells);
     });
   });
 });

@@ -20,6 +20,10 @@ export class Cell {
   public getColor(): Color {
     return this.color;
   }
+
+  public get positionAsText(): string {
+    return `${this.position.x}_${this.position.y}`
+  }
 }
 
 export type Cells = Array<Array<Cell>>;
@@ -66,17 +70,17 @@ export class Board {
   }
 
   public getCellAtPosition(position: Position): Cell | null {
-    return null;
+    return this.cells[position.x][position.y] ?? null;
   }
 }
 
 // class BoardIterator
 
-type CellMasks = Array<Array<boolean>>;
+// type CellMasks = Array<Array<boolean>>;
 
-export class BoardMask {
-  constructor(private cellMasks: CellMasks) {}
-}
+// export class BoardMask {
+//   constructor(private cellMasks: CellMasks) {}
+// }
 
 export enum Color {
   blue,
@@ -88,7 +92,7 @@ export enum Color {
   grey,
 }
 
-function createPosition(x: number, y: number): Position {
+export function createPosition(x: number, y: number): Position {
   return { x, y };
 }
 

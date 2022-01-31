@@ -1,5 +1,5 @@
 import { max } from "class-validator";
-import { Board, BoardMask, Cell } from "./components";
+import { Board, Cell } from "./components";
 
 interface ISolver {
   solve(board: Board): AdjecentCells;
@@ -18,17 +18,14 @@ export class DefaultSolver implements ISolver {
 }
 
 class DFSSearcher {
-  private visitedCells: VisitedCells
+  private visitedCells: VisitedCells;
 
   public constructor(private board: Board) {
-    this.visitedCells = new VisitedCells()
+    this.visitedCells = new VisitedCells();
   }
 
   public searchNeighborsOfSameColorFor(cell: Cell) {
-    return this.doSearchNeighborsOfSameColorFor(
-      cell,
-      new AdjecentCells()
-    );
+    return this.doSearchNeighborsOfSameColorFor(cell, new AdjecentCells());
   }
 
   private doSearchNeighborsOfSameColorFor(
@@ -51,10 +48,7 @@ class DFSSearcher {
 
     for (let neighborCell of neighbors) {
       if (neighborCell && cell.getColor() == neighborCell.getColor()) {
-        this.doSearchNeighborsOfSameColorFor(
-          neighborCell,
-          adjacencyList
-        );
+        this.doSearchNeighborsOfSameColorFor(neighborCell, adjacencyList);
       }
     }
 
@@ -66,27 +60,45 @@ class BestResultHolder {
   private bestResult: AdjecentCells = null;
 
   public overrideIfBetter(result: AdjecentCells) {
-    if (!this.bestResult || result.count() > this.bestResult.count()) {
+    if (!this.bestResult || result.count > this.bestResult.count) {
       this.bestResult = result;
     }
   }
 
   public get(): AdjecentCells {
-    return this.bestResult ?? new AdjecentCells()
+    return this.bestResult ?? new AdjecentCells();
   }
 }
-class AdjecentCells {
-  public addCell(cell: Cell) {}
+export class AdjecentCells {
+  private cells = [];
+  private _count = 0;
 
-  public count(): number {
-    return 0;
+  public constructor(cells: Array<Cell> = null) {
+    if (cells) {
+      for (let cell of cells) {
+        this.addCell(cell);
+      }
+    }
+  }
+
+  public addCell(cell: Cell) {
+    this.cells.push(cell);
+    this._count++;
+  }
+
+  public get count(): number {
+    return this.count;
   }
 }
 
 class VisitedCells {
+  private hash: { [key: string]: Cell } = {};
+
   public isVisited(cell: Cell): boolean {
-    return false;
+    return this.hash.hasOwnProperty(cell.positionAsText);
   }
 
-  public visit(cell) {}
+  public visit(cell: Cell) {
+    this.hash[cell.positionAsText] = cell;
+  }
 }
