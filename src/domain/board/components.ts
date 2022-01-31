@@ -55,22 +55,35 @@ export class Board {
     return [cells, { xDim, yDim: cells.length }];
   }
 
-  public [Symbol.iterator]() {
-    return {
-      next: () => {
-        this.cells.forEach((row, yPos) => {
-          row.forEach((cell, xPos) => {
-            return { value: this.cells[yPos][xPos], done: false };
-          });
-        });
+  public *[Symbol.iterator]() {
+    for(let row of this.cells) {
+      for(let cell of row) {
+        yield cell;
+      }
+    }
+    // this.cells.forEach((row, yPos) => {
+    //   row.forEach((cell, xPos) => {
+    //     // return { value: this.cells[yPos][xPos], done: false };
+    //     // return { value: cell, done: false };
+    //     yield cell;
+    //   });
+    // });
+    // return {
+    //   next: () => {
+    //     this.cells.forEach((row, yPos) => {
+    //       row.forEach((cell, xPos) => {
+    //         // return { value: this.cells[yPos][xPos], done: false };
+    //         return { value: cell, done: false };
+    //       });
+    //     });
 
-        return { done: true, value: null };
-      },
-    };
+    //     return { done: true, value: null };
+    //   },
+    // };
   }
 
   public getCellAtPosition(position: Position): Cell | null {
-    return this.cells[position.x][position.y] ?? null;
+    return this.cells?.[position.y]?.[position.x] ?? null;
   }
 }
 

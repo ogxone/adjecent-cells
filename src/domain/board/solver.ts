@@ -87,7 +87,7 @@ export class AdjecentCells {
   }
 
   public get count(): number {
-    return this.count;
+    return this._count;
   }
 }
 
