@@ -33,6 +33,13 @@ app.use(bodyParser.json());
 console.log(`${projectRoot}../`, "public")
 app.use(express.static(path.join(`${projectRoot}../`, "public")));
 
+// disable http cache
+app.set('etag', false)
+app.use((req, res, next) => {
+  res.set('Cache-Control', 'no-store')
+  next()
+})
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
@@ -49,7 +56,7 @@ app.use(function (err, req, res, next) {
 
   if (req.path.indexOf('/api/') == 0) {
     res.write(JSON.stringify(err, Object.getOwnPropertyNames(err)));  
-    res.send();
+    res.end();
   } else {
     res.render("error");
   }

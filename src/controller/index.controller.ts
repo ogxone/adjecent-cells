@@ -5,7 +5,7 @@ class IndexController {
   @Get('/')
   @Render("index")
   home() {
-    return { title: "Express11" };
+    return { title: "Express11", xDim: 10, yDim: 10 };
   }
 }
 

@@ -6,6 +6,7 @@
     "configurations": [
         {
             "type": "pwa-node",
+            "runtimeExecutable": "nodemon",
             "runtimeArgs": ["--es-module-specifier-resolution=node"],
             "request": "launch",
             "name": "debug with node",

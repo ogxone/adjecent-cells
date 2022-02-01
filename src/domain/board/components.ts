@@ -69,13 +69,13 @@ export class Board {
 }
 
 export enum Color {
-  blue,
-  green,
-  red,
-  yellow,
-  brown,
-  cyan,
-  grey,
+  blue = 'blue',
+  green = 'green',
+  red = 'red',
+  yellow = 'yellow',
+  brown = 'brown',
+  cyan = 'cyan',
+  grey = 'grey',
 }
 
 export const COLORS = [Color.blue, Color.green, Color.red, Color.yellow, Color.brown, Color.cyan, Color.grey]

@@ -13,15 +13,16 @@ class ApiController {
         let board = boardGenerator.generate(sizeSchema.getSize())
 
         return instanceToPlain(board)
+        
     }
 
     @Post('/find-adjecent-cells/')
     public computeBiggestRegion(@Body() boardSchema: BoardSchema) {
         let solver = new DefaultSolver()
 
-        let boardMask = solver.solve(boardSchema.getBoard())
+        let adjecentCells = solver.solve(boardSchema.getBoard())
 
-        return JSON.stringify(instanceToPlain(boardMask))
+        return instanceToPlain(adjecentCells)
     }
 }
 
