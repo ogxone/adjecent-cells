@@ -1,6 +1,6 @@
 import { Board, Cell, Color, createPosition } from "@domain/board/components";
 import { AdjecentCells, DefaultSolver } from "@domain/board/solver";
-import { equal } from "assert";
+import chai from "chai";
 
 describe("Test default solver", () => {
   let boards: Array<[string, Board, AdjecentCells]> = [
@@ -19,6 +19,21 @@ describe("Test default solver", () => {
         new Cell(createPosition(0, 3), Color.blue),
       ]),
     ],
+    [
+      "board2",
+      new Board([
+        [Color.green, Color.green, Color.blue, Color.red],
+        [Color.green, Color.blue, Color.red, Color.blue],
+        [Color.red, Color.blue, Color.blue, Color.blue],
+      ]),
+      new AdjecentCells([
+        new Cell(createPosition(1, 1), Color.blue),
+        new Cell(createPosition(1, 2), Color.blue),
+        new Cell(createPosition(2, 2), Color.blue),
+        new Cell(createPosition(3, 2), Color.blue),
+        new Cell(createPosition(3, 1), Color.blue),
+      ]),
+    ],
   ];
 
   // boards.forEach((data: [ string,  Board, BoardMask ], idx) => {
@@ -29,7 +44,7 @@ describe("Test default solver", () => {
 
       let actualAdjecentCells = solver.solve(board);
 
-      equal(expectedAdjecentCells, actualAdjecentCells);
+      chai.assert.deepEqual(expectedAdjecentCells, actualAdjecentCells);
     });
   });
 });
