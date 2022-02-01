@@ -6,7 +6,7 @@ import { instanceToPlain } from 'class-transformer';
 
 @JsonController('/api')
 class ApiController {
-    @Post('/generate-boxes/')
+    @Post('/generate-board/')
     public generateBoxes(@Body() sizeSchema: SizeSchema) {
         let boardGenerator = new RandomBoardGenerator()
         

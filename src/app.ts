@@ -24,12 +24,14 @@ console.log(projectRoot)
 // view engine setup
 app.set("views", path.join(`${projectRoot}/../`, "views"));
 app.set("view engine", "jade");
+app.locals.pretty = true
 
 app.use(morgan("dev"));
-// app.use(express.json());
+
 app.use(bodyParser.json());
-// app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(projectRoot, "public")));
+
+console.log(`${projectRoot}../`, "public")
+app.use(express.static(path.join(`${projectRoot}../`, "public")));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
