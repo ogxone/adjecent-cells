@@ -3,6 +3,7 @@ import { BoardSchema, SizeSchema } from '@infra/adapter/schema/class-validator'
 import { RandomBoardGenerator } from '@domain/board/generator';
 import { DefaultSolver } from '@domain/board/solver';
 import { instanceToPlain } from 'class-transformer';
+import { Board } from '@domain/board/components';
 
 @JsonController('/api')
 class ApiController {
@@ -17,10 +18,10 @@ class ApiController {
     }
 
     @Post('/find-adjecent-cells/')
-    public computeBiggestRegion(@Body() boardSchema: BoardSchema) {
+    public computeBiggestRegion(@Body() board: BoardSchema) {
         let solver = new DefaultSolver()
 
-        let adjecentCells = solver.solve(boardSchema.getBoard())
+        let adjecentCells = solver.solve(board.getBoard())
 
         return instanceToPlain(adjecentCells)
     }

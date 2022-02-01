@@ -1,6 +1,5 @@
 $(document).ready(function () {
   $("#generate-cells-btn").click(function () {
-    let btn = this;
     $.ajax({
       type: "POST",
       url: "/api/generate-board/",
@@ -19,13 +18,32 @@ $(document).ready(function () {
       },
     });
   });
+
+  $("#find-biggest-contiguous-area-btn").click(function () {
+    $.ajax({
+      type: "POST",
+      url: "/api/find-adjecent-cells/",
+      data: $("#content-pane > table").first().attr("data-board"),
+      dataType: "json",
+      contentType: "application/json",
+      success: (data) => {
+        drawBiggestAdjacentArea(data);
+      },
+      error: (err) => {
+        alert(JSON.stringify(err));
+      },
+    });
+  });
 });
 
 function drawBoard(data) {
+  $("#find-biggest-contiguous-area-btn").removeClass("disabled");
+
   let contentPane = $("#content-pane");
   contentPane.empty();
 
   let board = $("<table></table>");
+  board.attr("data-board", JSON.stringify(data));
 
   for (let row of data?.["cells"] ?? []) {
     let boardRow = $("<tr></tr>");
@@ -43,4 +61,15 @@ function drawBoard(data) {
   }
 
   contentPane.append(board);
+}
+
+function drawBiggestAdjacentArea(adjecentCells) {
+  $("#content-pane td").css('opacity', 0.2);
+
+  let cells = adjecentCells?.cells ?? []
+
+  for (let cell of cells) {
+      let td = $(`#content-pane td[data-position=${cell.position.x}_${cell.position.y}]`).first()
+      td.css('opacity', 1.0)
+  }
 }

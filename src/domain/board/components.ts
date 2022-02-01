@@ -30,14 +30,9 @@ export type Cells = Array<Array<Cell>>;
 export type CellColors = Array<Array<Color>>;
 
 export class Board {
-  private cells: Cells;
-  private size: Size;
+  constructor(private cells: Cells) {}
 
-  constructor(cellColors: CellColors) {
-    [this.cells, this.size] = this.loadCells(cellColors);
-  }
-
-  private loadCells(cellColors: CellColors): [Cells, Size] {
+  public static createFromColors(cellColors: CellColors): Board {
     let cells = [];
     let [xDim, yDim] = [undefined, 0];
     cellColors.forEach((row, yPos) => {
@@ -52,7 +47,7 @@ export class Board {
       cells.push(cellsRow);
     });
 
-    return [cells, { xDim, yDim: cells.length }];
+    return new this(cells);
   }
 
   public *[Symbol.iterator]() {

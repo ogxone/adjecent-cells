@@ -6,7 +6,7 @@ export interface IBoardGenerator {
 
 export class RandomBoardGenerator implements IBoardGenerator {
   public generate(size: Size): Board {
-    return new Board(this.generateCellColorsOfSize(size));
+    return Board.createFromColors(this.generateCellColorsOfSize(size));
   }
 
   private generateCellColorsOfSize(size: Size): CellColors {

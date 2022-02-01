@@ -6,7 +6,7 @@ describe("Test default solver", () => {
   let boards: Array<[string, Board, AdjecentCells]> = [
     [
       "board1",
-      new Board([
+      Board.createFromColors([
         [Color.blue, Color.brown, Color.cyan],
         [Color.blue, Color.brown, Color.cyan],
         [Color.blue, Color.brown, Color.cyan],
@@ -21,7 +21,7 @@ describe("Test default solver", () => {
     ],
     [
       "board2",
-      new Board([
+      Board.createFromColors([
         [Color.green, Color.green, Color.blue, Color.red],
         [Color.green, Color.blue, Color.red, Color.blue],
         [Color.red, Color.blue, Color.blue, Color.blue],
