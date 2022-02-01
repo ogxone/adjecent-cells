@@ -6,8 +6,9 @@ import morgan from "morgan";
 
 import { ApiController } from "@controller/api.controller";
 import { IndexController } from "@controller/index.controller";
-import { useExpressServer } from "routing-controllers";
+import { BadRequestError, useExpressServer } from "routing-controllers";
 import { URL } from 'url';
+import { instanceToInstance, instanceToPlain } from "class-transformer";
 
 
 var app = express();
@@ -18,8 +19,10 @@ useExpressServer(app, {
 });
 
 let projectRoot = new URL('..', import.meta.url).pathname 
+console.log(import.meta.url)
+console.log(projectRoot)
 // view engine setup
-app.set("views", path.join(projectRoot, "views"));
+app.set("views", path.join(`${projectRoot}/../`, "views"));
 app.set("view engine", "jade");
 
 app.use(morgan("dev"));
@@ -41,7 +44,13 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render("error");
+
+  if (req.path.indexOf('/api/') == 0) {
+    res.write(JSON.stringify(err, Object.getOwnPropertyNames(err)));  
+    res.send();
+  } else {
+    res.render("error");
+  }
 });
 
 export { app };

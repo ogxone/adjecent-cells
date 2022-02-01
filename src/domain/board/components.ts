@@ -27,7 +27,7 @@ export class Cell {
 }
 
 export type Cells = Array<Array<Cell>>;
-type CellColors = Array<Array<Color>>;
+export type CellColors = Array<Array<Color>>;
 
 export class Board {
   private cells: Cells;
@@ -77,6 +77,8 @@ export enum Color {
   cyan,
   grey,
 }
+
+export const COLORS = [Color.blue, Color.green, Color.red, Color.yellow, Color.brown, Color.cyan, Color.grey]
 
 export function createPosition(x: number, y: number): Position {
   return { x, y };

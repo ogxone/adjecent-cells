@@ -5,12 +5,12 @@ class SizeSchema {
   @IsInt()
   @Min(2)
   @Max(100)
-  private xDim: number;
+  public xDim: number;
 
   @IsInt()
   @Min(2)
   @Max(100)
-  private yDim: number;
+  public yDim: number;
 
   public getSize(): Size {
     return { xDim: this.xDim, yDim: this.yDim };

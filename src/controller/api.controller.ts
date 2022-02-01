@@ -6,16 +6,16 @@ import { instanceToPlain } from 'class-transformer';
 
 @JsonController('/api')
 class ApiController {
-    @Post('/generate-boxes')
+    @Post('/generate-boxes/')
     public generateBoxes(@Body() sizeSchema: SizeSchema) {
         let boardGenerator = new RandomBoardGenerator()
         
         let board = boardGenerator.generate(sizeSchema.getSize())
 
-        return JSON.stringify(instanceToPlain(board))
+        return instanceToPlain(board)
     }
 
-    @Post('/compute-biggest-region')
+    @Post('/find-adjecent-cells/')
     public computeBiggestRegion(@Body() boardSchema: BoardSchema) {
         let solver = new DefaultSolver()
 
