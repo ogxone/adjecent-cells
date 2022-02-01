@@ -1,4 +1,3 @@
-import { max } from "class-validator";
 import { Board, Cell } from "./components";
 
 interface ISolver {

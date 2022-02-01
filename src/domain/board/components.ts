@@ -61,39 +61,12 @@ export class Board {
         yield cell;
       }
     }
-    // this.cells.forEach((row, yPos) => {
-    //   row.forEach((cell, xPos) => {
-    //     // return { value: this.cells[yPos][xPos], done: false };
-    //     // return { value: cell, done: false };
-    //     yield cell;
-    //   });
-    // });
-    // return {
-    //   next: () => {
-    //     this.cells.forEach((row, yPos) => {
-    //       row.forEach((cell, xPos) => {
-    //         // return { value: this.cells[yPos][xPos], done: false };
-    //         return { value: cell, done: false };
-    //       });
-    //     });
-
-    //     return { done: true, value: null };
-    //   },
-    // };
   }
 
   public getCellAtPosition(position: Position): Cell | null {
     return this.cells?.[position.y]?.[position.x] ?? null;
   }
 }
-
-// class BoardIterator
-
-// type CellMasks = Array<Array<boolean>>;
-
-// export class BoardMask {
-//   constructor(private cellMasks: CellMasks) {}
-// }
 
 export enum Color {
   blue,
