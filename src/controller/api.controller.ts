@@ -3,7 +3,6 @@ import { BoardSchema, SizeSchema } from '@infra/adapter/schema/class-validator'
 import { RandomBoardGenerator } from '@domain/board/generator';
 import { DefaultSolver } from '@domain/board/solver';
 import { instanceToPlain } from 'class-transformer';
-import { Board } from '@domain/board/components';
 
 @JsonController('/api')
 class ApiController {

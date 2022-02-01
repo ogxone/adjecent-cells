@@ -13,10 +13,8 @@ import { instanceToInstance, instanceToPlain } from "class-transformer";
 
 var app = express();
 
-useExpressServer(app, {
-  controllers: [ApiController, IndexController],
-  defaultErrorHandler: false,
-});
+// disable http cache
+app.set('etag', false)
 
 let projectRoot = new URL('..', import.meta.url).pathname 
 console.log(import.meta.url)
@@ -30,15 +28,12 @@ app.use(morgan("dev"));
 
 app.use(bodyParser.json());
 
-console.log(`${projectRoot}../`, "public")
 app.use(express.static(path.join(`${projectRoot}../`, "public")));
 
-// disable http cache
-app.set('etag', false)
-app.use((req, res, next) => {
-  res.set('Cache-Control', 'no-store')
-  next()
-})
+useExpressServer(app, {
+  controllers: [ApiController, IndexController],
+  defaultErrorHandler: false,
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -47,6 +42,10 @@ app.use(function (req, res, next) {
 
 // error handler
 app.use(function (err, req, res, next) {
+  if (res.headersSent) {
+    return next(err);
+  }
+
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
@@ -60,6 +59,7 @@ app.use(function (err, req, res, next) {
   } else {
     res.render("error");
   }
+  return;
 });
 
 export { app };
