@@ -7,7 +7,7 @@
   "scripts": {
     "build": "npx run-s build:*",
     "build:tcs": "npx rimraf dist && npx tsc && npx tsc-alias",
-    "start": "NODE_ENV=production npm run build && node --es-module-specifier-resolution=node ./dist",
+    "start": "NODE_ENV=production npm run build && node --es-module-specifier-resolution=node ./dist/src/",
     "test": "npx jest --verbose --colors --detectOpenHandles --runInBand"
   },
   "main": "dist/index.js",
