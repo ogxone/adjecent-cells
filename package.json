@@ -5,8 +5,7 @@
   "type": "module",
   "module": "es2020",
   "scripts": {
-    "build": "npx run-s build:*",
-    "build:tcs": "npx rimraf dist && npx tsc && npx tsc-alias",
+    "build": "npx rimraf dist && npx tsc && npx tsc-alias",
     "start": "NODE_ENV=production npm run build && node --es-module-specifier-resolution=node ./dist/src/",
     "test": "npx jest --verbose --colors --detectOpenHandles --runInBand"
   },

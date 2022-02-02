@@ -17,8 +17,6 @@ var app = express();
 app.set('etag', false)
 
 let projectRoot = new URL('..', import.meta.url).pathname 
-console.log(import.meta.url)
-console.log(projectRoot)
 // view engine setup
 app.set("views", path.join(`${projectRoot}/../`, "views"));
 app.set("view engine", "jade");
